@@ -1,21 +1,35 @@
-## Bookmark Manager
+# Bookmark Manager
 
-# It shows list of links from the database:
+## User Stories
+
+```
 As a User
-So I can see all links in the database
-I want it to show a list of links
+So that I can see websites I visit regularly
+I want to see a list of links on the homepage
 
-# new links can be added:
 As a User
-So that I can save links in the database
-I want to add links to the list with adress and title
+So that I can view my recent bookmarks
+I want to see a list in descending chronological order
 
-# links can be tagged
-As a user
-So that I know what kind of link it is
-I want to be able to tag links
-
-# links can be filtered by tags
 As a User
-So that I can find the right link
-I want to be able to filter them by tags
+So that I can add a bookmark
+I want to be able to add a title and address to the manager
+
+As a User
+So that I can group my bookmarks
+I want to be able to add tags to my links
+
+As a User
+So that I can see my grouped bookmarks
+I want to be able to filter links by tag
+```
+
+## Rough Domain Model
+|   Objects 	|  Messages 	  |
+|---        	|---	          |
+|     User   	|            	  |
+|     Links  	| view_all   	  |
+|     Links  	| sort_by   	  |
+|     Links  	| add_link   	  |
+|     Tags  	| add_tag    	  |
+|     Tags  	| filter_by_tag |
