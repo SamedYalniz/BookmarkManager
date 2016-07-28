@@ -2,8 +2,8 @@ feature 'Sign up' do
   before do
     visit '/users'
     fill_in 'First Name:', with: 'Mannie'
-    fill_in 'Last Name:', with: ''
-    fill_in 'Email:', with: 'mannie.com'
+    fill_in 'Last Name:', with: 'Mannie'
+    fill_in 'Email:', with: 'mannie@mannie.com'
     fill_in 'Password:', with: 'Password123'
   end
 
@@ -20,7 +20,7 @@ feature 'Sign up' do
   scenario 'input email address is the same as database entry' do
     fill_in 'Confirm Password:', with: 'Password123'
     click_button('Signup')
-    expect(User.first.email).to eq 'mannie.com'
+    expect(User.first.email).to eq 'mannie@mannie.com'
   end
 
   scenario 'user enters different password in password confirmation' do
@@ -30,6 +30,21 @@ feature 'Sign up' do
     expect(current_path).to eq '/users'
     expect(page).to have_content("passwords do not match")
     email = find_field("Email").value
-    expect(email).to eq "mannie.com"
+    expect(email).to eq "mannie@mannie.com"
+  end
+
+  scenario 'user does not enter an email address' do
+    fill_in 'Email', with: nil
+    fill_in 'Confirm Password:', with: 'Password123'
+    click_button('Signup')
+    expect(User.count).to eq 0
+  end
+
+  scenario 'user enters an invalid/incomplete email address' do
+    fill_in 'Email', with: 'mannie.com'
+    fill_in 'Confirm Password:', with: 'Password123'
+    click_button('Signup')
+    expect(User.count).to eq 0
+
   end
 end
