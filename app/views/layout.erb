@@ -8,11 +8,14 @@
     <% if current_user %>
       Hi <%= current_user.first_name %>!
     <% end %>
-    <div id="notice">
-    <% if flash[:invalid_passwords] %>
-      <%= flash[:invalid_passwords] %>
-      <% end %>
-    </div>
+    
+    <% if flash[:errors] && !flash[:errors].empty? %>
+    <ul id="errors">
+    <% flash[:errors].each do |error|  %>
+    <li>  <%= error %> </li>
+    <% end %>
+    </ul>
+    <% end %>
     <%= yield %>
 
 

@@ -1,15 +1,15 @@
 <form class="" action="/users" method="POST">
   <label for="first_name">
     First Name:
-    <input type="text" name="first_name" value= "<%= @first_name %>" />
+    <input type="text" name="first_name" value= "<%= @user.first_name %>" />
   </label>
   <label for="last_name">
     Last Name:
-    <input type="text" name="last_name" value = "<%= @last_name %>" />
+    <input type="text" name="last_name" value = "<%= @user.last_name %>" />
   </label>
   <label for="email">
     Email:
-    <input type="email" name="email" value= "<%= @email %>" required/>
+    <input type="email" name="email" value= "<%= @user.email %>" required/>
   </label>
   <label for="password">
     Password:

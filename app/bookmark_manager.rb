@@ -34,23 +34,18 @@ class BookmarkManager < Sinatra::Base
    end
 
    get '/users' do
-     @first_name = session[:first_name]
-     @last_name = session[:last_name]
-     @email = session[:email]
+     @user = User.new
      erb :'users/signup'
    end
 
    post '/users' do
-     session[:first_name] = params[:first_name]
-     session[:last_name] = params[:last_name]
-     session[:email] = params[:email]
-     user = User.create(:first_name => params[:first_name], :last_name => params[:last_name], :email => params[:email], :password => params[:password], :password_confirmation => params[:password_confirmation])
-     if user.id
-       session[:user_id] = user.id
+     @user = User.new(:first_name => params[:first_name], :last_name => params[:last_name], :email => params[:email], :password => params[:password], :password_confirmation => params[:password_confirmation])
+     if @user.save
+       session[:user_id] = @user.id
        redirect '/links'
      else
-       flash[:invalid_passwords] = "passwords do not match"
-       redirect '/users'
+       flash.now[:errors] = @user.errors.full_messages
+       erb :'users/signup'
      end
    end
 

@@ -28,7 +28,7 @@ feature 'Sign up' do
     click_button('Signup')
     expect(User.count).to eq 0
     expect(current_path).to eq '/users'
-    expect(page).to have_content("passwords do not match")
+    expect(page).to have_content("Password does not match the confirmation")
     email = find_field("Email").value
     expect(email).to eq "mannie@mannie.com"
   end
@@ -46,5 +46,19 @@ feature 'Sign up' do
     click_button('Signup')
     expect(User.count).to eq 0
 
+  end
+
+  scenario 'user cannot sign up with already registered email address' do
+    fill_in 'Confirm Password:', with: 'Password123'
+    click_button("Signup")
+    visit '/users'
+    fill_in 'First Name:', with: 'Mannie'
+    fill_in 'Last Name:', with: 'Mannie'
+    fill_in 'Email:', with: 'mannie@mannie.com'
+    fill_in 'Password:', with: 'Password123'
+    fill_in 'Confirm Password:', with: 'Password123'
+    click_button("Signup")
+    expect(User.count).to eq 1
+    expect(page).to have_content("Email is already taken")
   end
 end
