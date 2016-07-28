@@ -1,6 +1,6 @@
 feature 'Sign up' do
   before do
-    visit '/users'
+    visit '/users/new'
     fill_in 'First Name:', with: 'Mannie'
     fill_in 'Last Name:', with: 'Mannie'
     fill_in 'Email:', with: 'mannie@mannie.com'
@@ -51,7 +51,7 @@ feature 'Sign up' do
   scenario 'user cannot sign up with already registered email address' do
     fill_in 'Confirm Password:', with: 'Password123'
     click_button("Signup")
-    visit '/users'
+    visit '/users/new'
     fill_in 'First Name:', with: 'Mannie'
     fill_in 'Last Name:', with: 'Mannie'
     fill_in 'Email:', with: 'mannie@mannie.com'
