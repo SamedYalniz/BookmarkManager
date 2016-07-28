@@ -5,6 +5,7 @@ gem 'sinatra'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'rake'
+gem 'sinatra-flash'
 
 group :test, :development do
   gem 'database_cleaner'

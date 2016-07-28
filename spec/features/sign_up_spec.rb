@@ -1,12 +1,12 @@
 feature 'Sign up' do
   before do
-    visit '/signup'
+    visit '/users'
     fill_in 'First Name:', with: 'Mannie'
     fill_in 'Last Name:', with: ''
     fill_in 'Email:', with: 'mannie.com'
     fill_in 'Password:', with: 'Password123'
   end
-  
+
   scenario 'when a user signs up the User account count increases by 1' do
     fill_in 'Confirm Password:', with: 'Password123'
     click_button('Signup')
@@ -27,5 +27,9 @@ feature 'Sign up' do
     fill_in 'Confirm Password:', with: 'Password122'
     click_button('Signup')
     expect(User.count).to eq 0
+    expect(current_path).to eq '/users'
+    expect(page).to have_content("passwords do not match")
+    email = find_field("Email").value
+    expect(email).to eq "mannie.com"
   end
 end

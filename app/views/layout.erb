@@ -8,7 +8,14 @@
     <% if current_user %>
       Hi <%= current_user.first_name %>!
     <% end %>
+    <div id="notice">
+    <% if flash[:invalid_passwords] %>
+      <%= flash[:invalid_passwords] %>
+      <% end %>
+    </div>
     <%= yield %>
+
+
 
   </body>
 </html>

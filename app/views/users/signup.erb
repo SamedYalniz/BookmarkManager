@@ -1,15 +1,18 @@
-<form class="" action="/signup" method="POST">
+
+
+
+<form class="" action="/users" method="POST">
   <label for="first_name">
     First Name:
-    <input type="text" name="first_name" />
+    <input type="text" name="first_name" value= "<%= @first_name %>" />
   </label>
   <label for="last_name">
     Last Name:
-    <input type="text" name="last_name" />
+    <input type="text" name="last_name" value = "<%= @last_name %>" />
   </label>
   <label for="email">
     Email:
-    <input type="email" name="email" />
+    <input type="email" name="email" value= "<%= @email %>" />
   </label>
   <label for="password">
     Password:
