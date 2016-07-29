@@ -16,7 +16,8 @@ feature 'sign up' do
     fill_in 'password', with: 'password123'
     fill_in 'password_confirmation', with: 'password1234'
     click_button 'Sign up'
- 
     expect(User.count).to eq 0
+    expect(current_path).to eq '/users'
+    expect(page).to have_content 'Password and confirmation password do not match'
   end
 end
