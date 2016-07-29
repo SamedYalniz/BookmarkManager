@@ -4,10 +4,13 @@
     <% if current_user %>
     Welcome <%= current_user.email %>
     <%end %>
-    <% if flash[:notice] %>
-    <%= flash[:notice] %>
+    <ul id="errors">
+    <% if flash[:errors] && !flash[:errors].empty? %>
+        <% flash[:errors].each do |error|%>
+        <li>  <%= error %> </li>
+        <% end %>
     <%end %>
-
+      </ul>
     <%= yield %>
   </body>
   </html>
